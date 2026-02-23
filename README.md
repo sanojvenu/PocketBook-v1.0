@@ -9,7 +9,7 @@
   Track expenses, manage budgets, and get intelligent financial insights — all in one app.
 </p>
 
-## 🌐 Live Demo
+## 🌐 Live
 
 **Check it out live:** [web.mypocketbook.in](https://web.mypocketbook.in/)
 
