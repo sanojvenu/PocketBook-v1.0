@@ -2,7 +2,7 @@
   <img src="assets/logo.png" alt="PocketBook Logo" width="120" height="120" style="border-radius: 20px;" />
 </p>
 
-<h1 align="center">💰 PocketBook</h1>
+<h1 align="center">PocketBook</h1>
 
 <p align="center">
   <strong>AI-Powered Personal Finance Manager</strong><br/>
@@ -227,5 +227,5 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/sanojvenu">Sanoj Venu</a>
+  Made with ❤️ by <a href="https://github.com/sanojvenu">Sanoj V</a>
 </p>
