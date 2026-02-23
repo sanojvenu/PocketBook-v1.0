@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper: Check if user is admin
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == 'mail@mypocketbook.in' || 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+      );
+    }
+
+    // User Data
+    match /users/{userId} {
+      // Owner can R/W, Admin can R/W (for listing and role updates)
+      allow read, write: if request.auth != null && (request.auth.uid == userId || isAdmin());
+      
+      // Subcollections (transactions, reminders) - Owner only for now, or Admin if needed
+      match /{document=**} {
+        allow read, write: if request.auth != null && (request.auth.uid == userId || isAdmin());
+      }
+    }
+    
+    // Invites Collection (Keyed by Email)
+    match /user_invites/{email} {
+      // Admin can manage invites. Users can read to check their own role on signup.
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    // Settings
+    match /settings/global {
+      allow read: if true;
+      allow write: if isAdmin(); 
+    }
+  }
+}

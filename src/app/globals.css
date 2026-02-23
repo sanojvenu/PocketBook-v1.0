@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* HSL Color Palette */
+  --primary: 250 100% 65%;
+  /* Vibrant Purple */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 180 100% 40%;
+  /* Teal/Cyan */
+  --secondary-foreground: 0 0% 100%;
+
+  --accent: 330 100% 60%;
+  /* Vibrant Pink */
+  --accent-foreground: 0 0% 100%;
+
+  --background: 220 30% 96%;
+  /* Light Blueish Grey */
+  --foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 250 100% 65%;
+
+  --radius: 1rem;
+
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 240 10% 4%;
+    /* Deep Dark */
+    --foreground: 210 40% 98%;
+
+    --card: 240 10% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+
+    --glass-bg: rgba(20, 20, 30, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Native feel: prevent text selection on UI elements if desired, but usually just safe-area and tap highlight is enough */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  zoom: 100%;
+  /* Reset zoom to standard 100% for consistency */
+  /* Abstract Background blobs */
+  background-image:
+    radial-gradient(circle at 10% 20%, hsla(var(--primary), 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, hsla(var(--secondary), 0.15) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius);
+}
+
+.glass-card {
+  /* Inherited from .glass-panel */
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius);
+
+  /* Card specific overrides */
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: calc(var(--radius) - 2px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass-card {
+    background: rgba(30, 30, 40, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: hsl(var(--foreground));
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsla(var(--foreground), 0.2);
+  border-radius: 4px;
+}
+
+/* Custom Scrollbar for specific containers */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  /* Slightly thinner but consistent */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  /* Visible track */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.5);
+  /* Slate-500 equivalent with opacity */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(71, 85, 105, 0.8);
+  /* Slate-600 */
+}
+
+/* Hide invisible reCAPTCHA badge */
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+/* Safe Area Utilities */
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.min-h-screen-safe {
+  min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+}
+
+/* Recharts Focus Outline Fix */
+/* Recharts Focus Outline Fix */
+.recharts-wrapper,
+.recharts-wrapper:focus,
+.recharts-wrapper:active,
+.recharts-surface:focus,
+.recharts-surface:active,
+.recharts-layer:focus,
+.recharts-layer:active,
+.recharts-sector:focus,
+.recharts-sector:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Specific fix for the square background some versions add */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  shape-rendering: crispEdges;
+}
+
+*:focus {
+  outline: none;
+  /* Global reset for touch devices often helpful, but use with caution. Here we'll rely on specific selectors first */
+}
