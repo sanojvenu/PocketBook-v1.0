@@ -9,6 +9,13 @@
   Track expenses, manage budgets, and get intelligent financial insights — all in one app.
 </p>
 
+## 🌐 Live Demo
+
+**Check it out live:** [web.mypocketbook.in](https://web.mypocketbook.in/)
+
+> [!NOTE]
+> The live site is currently optimized for users in **India**. However, the project is designed for global use — feel free to fork the repository, tweak the settings (currency, localization, AI prompts), and deploy a version tailored for your own country!
+
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
   <img src="https://img.shields.io/badge/Next.js-15-black?logo=next.js" alt="Next.js 15" />
